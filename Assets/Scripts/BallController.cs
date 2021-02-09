@@ -51,7 +51,7 @@ public class BallController : MonoBehaviour {
         if (hit) //Wenn der Ball getroffen wurde
         {
             //if(rb.IsSleeping() && !golfHoleScript.holeWon)             // Wenn der Ball sich nicht mehr bewegt und nicht im Ziel ist
-            if (rb.velocity.magnitude < 0.1 && !golfHoleScript.holeWon) // Wenn der Ball sich nicht mehr bewegt und nicht im Ziel ist
+            if (rb.velocity.magnitude < 0.02 && !golfHoleScript.holeWon) // Wenn der Ball sich nicht mehr bewegt und nicht im Ziel ist
             {
                 //Stop ball movement
                 rb.velocity = new Vector3 (0, 0, 0);
