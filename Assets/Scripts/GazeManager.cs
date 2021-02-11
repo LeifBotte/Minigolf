@@ -8,9 +8,10 @@ public class GazeManager : MonoBehaviour
 {
    
     public GameManager gameManager;               //Script GameManager
-
+ public BallController ballcontroller;
     public GameObject sign_GameStart;            //Schriftzug des StartButtons
     public GameObject sign_Direction;            //Schriftzug des RichtungauswählenButtons
+    public GameObject hintergrundPlaneWin;
     public GameObject planeDirection;            //Button Richtungauswählen 
     private GameObject pushElement;              //Objekt für dem Button der ausgwaählt wird
     private GameObject teleportPoint;            //Objekt für das Auge ,welches ausgewählt wurde
@@ -25,8 +26,8 @@ public class GazeManager : MonoBehaviour
     
     public float duration;                      // Zeitgrenze des grünen Kreises
     private float timer;
-    
-    private bool isgaze;                       // Wird Aktiviert, wenn man über etwas Hovert
+     public GolfHoleScript golfHoleScript;
+    public bool isgaze;                       // Wird Aktiviert, wenn man über etwas Hovert
     private bool buttonTag = false;            // Wird Aktiviert, wenn man ein Button ausgewählt hat
 
     private Vector3 startPosition;             // Speichert die Startposition des X-Rig
@@ -50,6 +51,7 @@ public class GazeManager : MonoBehaviour
         //Wenn mit dem Recticle gehovert wird
         if (isgaze)
         {
+           // Debug.Log(buttonTag);
             //Solange der Timer kleiner als die Zeitgrenze ist wird der Kreis grüne Kreis gefüllt
             if (duration > timer)
             {
@@ -80,10 +82,17 @@ public class GazeManager : MonoBehaviour
                             item.SetActive(true);
                         }
                     }
+                    if (pushElement.name == "PlaneWin")
+                    {
+                        Debug.Log("WINWINWINW");
+                    ballcontroller.gucci();
+                    hintergrundPlaneWin.SetActive(false);
+                                        }
                     //Wenn der Richtungsauswahlbutton ausgewählt wurde verschwindet auch der Schriftzug
                     //Und im Gamemangaer start die Richtunsauswahlphase
                     if (pushElement.name == "PlaneDirection")
                     {
+                        planeDirection.SetActive(false);
                         sign_Direction.SetActive(false);
                         gameManager.DirectionPhase();
                     }
@@ -153,6 +162,7 @@ public class GazeManager : MonoBehaviour
     public void PushButton(GameObject button)
     {
         pushElement = button;
+        Debug.Log("HIER"+pushElement.name);
         isgaze = true;
         //Signalisier, das ein Button ausgewählt wurde
         buttonTag = true;

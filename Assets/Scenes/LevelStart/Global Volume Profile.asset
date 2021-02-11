@@ -19,12 +19,12 @@ MonoBehaviour:
     m_Value: 0.51
   contrast:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 23
     min: -100
     max: 100
   colorFilter:
     m_OverrideState: 0
-    m_Value: {r: 0.6415094, g: 0.50534, b: 0.50534, a: 1}
+    m_Value: {r: 0.8254717, g: 1, b: 0.9512158, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: 16
+    m_Value: 9
     min: -100
     max: 100
 --- !u!114 &11400000
@@ -56,6 +56,7 @@ MonoBehaviour:
   - {fileID: -5836466928690383085}
   - {fileID: 5533838872125957881}
   - {fileID: 2298876935513839}
+  - {fileID: 94170574366965914}
 --- !u!114 &2298876935513839
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -118,6 +119,28 @@ MonoBehaviour:
     m_Value: 0
     min: -180
     max: 180
+--- !u!114 &94170574366965914
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e021b4c809a781e468c2988c016ebbea, type: 3}
+  m_Name: ColorLookup
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  texture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  contribution:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+    max: 1
 --- !u!114 &649733063009020350
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -151,10 +174,10 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.7443604, y: 0.8422255, z: 1, w: -0.30253467}
+    m_Value: {x: 0.8581341, y: 0.8887632, z: 1, w: 0.15535581}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.106296}
+    m_Value: {x: 1, y: 0.9870905, z: 0.9992059, w: 0.17170893}
   highlights:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: -0.098119386}
@@ -164,7 +187,7 @@ MonoBehaviour:
     min: 0
   shadowsEnd:
     m_OverrideState: 1
-    m_Value: 0.16
+    m_Value: 0.34
     min: 0
   highlightsStart:
     m_OverrideState: 0
@@ -322,22 +345,49 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   hueVsHue:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 0
+      <length>k__BackingField: 3
       m_Loop: 1
       m_ZeroValue: 0.5
       m_Range: 1
       m_Curve:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.18881118
+          value: 0.5245098
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.37762237
+          value: 0.24019605
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.46153846
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
   hueVsSat:
     m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 8
+      <length>k__BackingField: 9
       m_Loop: 1
       m_ZeroValue: 0.5
       m_Range: 1
@@ -346,7 +396,7 @@ MonoBehaviour:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.6540284
+          value: 0.504902
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -355,6 +405,15 @@ MonoBehaviour:
           outWeight: 0
         - serializedVersion: 3
           time: 0.03167421
+          value: 0.50710905
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.19347319
           value: 0.50710905
           inSlope: 0
           outSlope: 0
@@ -372,8 +431,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.42533937
-          value: 0.4691943
+          time: 0.41491842
+          value: 0.5147059
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -399,8 +458,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.6651584
-          value: 0.82938385
+          time: 0.6736597
+          value: 0.49019605
           inSlope: 0
           outSlope: 0
           tangentMode: 0

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public float arrowConfirmTime = 10;             // die Zeit bis der Pfeil verschwindet und die Richtung festgelegt wird 
     bool boolV = true;
+    public GolfHoleScript golfHoleScript;
     bool startDirection = false;
     public float teleportTime = 25;                 // Zeit zum anschauen der Map, also die Zeit die man in der Teleportphase ist
     public bool overTeleTime = false;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     public bool aimPhase()                        // gibt zurück ob man in der Aimphase ist (Richtungsauswahl)
     {
-        if(arrowConfirmTime >= 0 && startDirection)     // wenn die Arrowconfirmtime größer als Null ist und startdirection ist True
+        if(arrowConfirmTime >= 0 && startDirection && !GolfHoleScript.holeWon)     // wenn die Arrowconfirmtime größer als Null ist und startdirection ist True
         {
             hudGolf.SetActive(true);                    // das GolfHUD wird aktiviert
             boolV = true;                               // Boolien wird auf true gesetzt

@@ -22,28 +22,20 @@ public class BallController : MonoBehaviour {
     public GolfHoleScript golfHoleScript;
     private Vector3 pos;
     private bool onObstacle;
-    private int holeCounter;
+
 
     // Start is called before the first frame update
     void Start () {
         startPostion = transform.position; // speichert die Anfangsposition des Balls
         arrow = GameObject.Find ("ArrowManager"); // weißt arrow dem ArrowManager Objekt zu
         rb = GetComponent<Rigidbody> (); // weißt die Rigidbody Komponente zu
-        golfHoleScript.holeWon = false;
+        GolfHoleScript.holeWon = false;
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (golfHoleScript.holeWon) // Wenn man ins Ziel getroffen hat
-        {
 
-            transform.position = nextPos (); // wird der Ball zur Startposition gesetzt
-            startPostion = nextPos ();
-            golfHoleScript.holeWon = false; // holeWon wird wieder auf false gesetzt
-            arrow.transform.position = transform.position;
-            Debug.Log ("Loch: " + holeCounter);
-        }
         v3Force = -rotationCamera.transform.right; // v3Force bekommt die Blickrichtung der Kamera übergeben 
         v3Force.y = 0; // der Wert der Y-Achse muss auf 0 gesetzt werden damit die vertikale Drehung 
         // der Kamera keine Auswirkung auf die Kugel hat
@@ -51,7 +43,7 @@ public class BallController : MonoBehaviour {
         if (hit) //Wenn der Ball getroffen wurde
         {
             //if(rb.IsSleeping() && !golfHoleScript.holeWon)             // Wenn der Ball sich nicht mehr bewegt und nicht im Ziel ist
-            if (rb.velocity.magnitude < 0.02 && !golfHoleScript.holeWon) // Wenn der Ball sich nicht mehr bewegt und nicht im Ziel ist
+            if (rb.velocity.magnitude < 0.1 && !GolfHoleScript.holeWon) // Wenn der Ball sich nicht mehr bewegt und nicht im Ziel ist
             {
                 //Stop ball movement
                 rb.velocity = new Vector3 (0, 0, 0);
@@ -65,6 +57,13 @@ public class BallController : MonoBehaviour {
 
             }
         }
+    }
+    public void gucci(){
+          transform.position = nextPos (); // wird der Ball zur Startposition gesetzt
+            startPostion = nextPos ();
+            GolfHoleScript.holeWon = false; // holeWon wird wieder auf false gesetzt
+            arrow.transform.position = transform.position;
+            Debug.Log ("Loch: " + GolfHoleScript.holeCounter);
     }
 
     private void OnCollisionExit (Collision collision) {
@@ -91,6 +90,7 @@ public class BallController : MonoBehaviour {
         }
         if (col.gameObject.tag == "OutOff") // Wenn der Ball den Ground trifft
         {
+            Debug.Log("FEHLER");
             transform.position = lastPosition; // wird er auf die Letzte Position zurück gebracht
             StopBall (); // Und die Funktionb Stopball() wird ausgeführt
         }
@@ -105,7 +105,7 @@ public class BallController : MonoBehaviour {
     private Vector3 nextPos () {
         
         //hier sind alle startpositionen für den Ball in den einzelnen Bahnen gespeichert
-        switch (golfHoleScript.holeCounter) {
+        switch (GolfHoleScript.holeCounter) {
             case 0:
                 pos = new Vector3 (0.5134f, 0.1103f, -2.2452f);
                 break;

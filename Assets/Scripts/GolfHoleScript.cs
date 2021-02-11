@@ -7,17 +7,21 @@ public class GolfHoleScript : MonoBehaviour {
     public AudioClip sound;
     public BallController ballcontroller;
     public GameObject planeWin;
-    public bool holeWon;
+    public static bool holeWon;
     public float winTime = 10;
     public float timer = 10;
-    private bool holeTrigger = false;
-    public int holeCounter;
+    public bool holeTrigger = false;
+    public static int holeCounter;
+
+    void Start(){
+        planeWin.SetActive (false);
+    }
 
     //Hier Funktioniert der Timer und das erscheinen der WinPlane noch nicht, haben es trotzdem für euch drinnen gelassen
     void Update () {
         if (!holeWon) //Wenn der Ball noch nicht im Ziel ist
         {
-            planeWin.SetActive (false); //bleibt die Gewinnerplane deaktiviert
+           // planeWin.SetActive (false); //bleibt die Gewinnerplane deaktiviert
         }
 
         if (holeTrigger) // wenn der Ball ins Ziel trifft
@@ -25,7 +29,7 @@ public class GolfHoleScript : MonoBehaviour {
 
             holeWon = true;
             holeTrigger = false;
-            holeCounter += 1;
+            holeCounter ++;
             if (holeCounter == 9) {
                 holeCounter = 0;
             }
