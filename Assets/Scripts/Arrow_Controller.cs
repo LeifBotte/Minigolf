@@ -12,7 +12,7 @@ public class Arrow_Controller : MonoBehaviour
     public GameObject club;
     public GameObject golfBall;
     public GameObject xrrig;
-
+ public GameObject camOffset;
     public Vector3 forceDirection;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class Arrow_Controller : MonoBehaviour
     {
         if (gameManager.aimPhase())                             // Wenn man in der Aimphase ist ( Richungsauswahl)
         {
+             
             followCamera();                                     // Funktion followCamera wird ausgeführt 
             arrow.SetActive(true);                              // Pfeil wird aktiviert
             club.SetActive(false);                              // Golfschläger wird deaktiviert
@@ -33,6 +34,7 @@ public class Arrow_Controller : MonoBehaviour
         if(gameManager.overAimPhase())
         {
             //Debug.Log("Pfeil verschwindet");
+         
             arrow.SetActive(false);                                  //Pfeil wird deaktiviert
         }
         
@@ -40,10 +42,12 @@ public class Arrow_Controller : MonoBehaviour
     private void followCamera()
     {
         
-        transform.rotation = rotaionCamera.transform.rotation;   // Der Pfeil erhält die Roation der Kamera
-        var rot = transform.rotation;                            // Varible rot erhält die aktuelle Rotation
-        transform.rotation = new Quaternion(0, rot.y, 0, rot.w); // Die Rotation wird auf der X und Z Achse gespeert        
+        transform.rotation = rotaionCamera.transform.rotation;   // Der Pfeil erhält die Rotation der Kamera
+        var rot = transform.rotation;                            // Variable rot erhält die aktuelle Rotation
+        transform.rotation = new Quaternion(0, rot.y, 0, rot.w); // Die Rotation wird auf der X und Z Achse gesperrt        
         xrrig.transform.position = golfBall.transform.position;  // XR Rig wird auf die Position des Balls gesetzt
+
+
 
         
     }

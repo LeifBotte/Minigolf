@@ -9,6 +9,7 @@ public class HitPhase : MonoBehaviour
     public GameObject arrowManager;         
     public GameObject club;
     public GameManager gameManager;
+    public GameObject camOffset;
 
     // Update is called once per frame
     void Update()
@@ -20,7 +21,9 @@ public class HitPhase : MonoBehaviour
     public void enableClub()
     {
         Debug.Log("Golfschläger erscheint");
+       
         club.SetActive(true);
+
     }
 
 
@@ -29,7 +32,8 @@ public class HitPhase : MonoBehaviour
     {
         if (gameManager.rotationRXRig())                                                    //Wenn Richtungswahl abgeschlossen ist
         {
-                //Debug.Log("directioooooooooooooooooooooon");
+                Debug.Log("directioooooooooooooooooooooon");
+             //    camOffset.transform.position = transform.position + new Vector3(0,1.13f,-1.13f);
                 transform.rotation = arrowManager.transform.rotation;                       //XR Rig erhält die Rotation des Pfeiles
                 transform.rotation = Quaternion.Euler(0,transform.eulerAngles.y+90,0);      //XR Rig dreht sich um 90 Grad 
                 Debug.Log("Rotation: "+ transform.rotation);

@@ -9,6 +9,7 @@ public class GazeManager : MonoBehaviour
    
     public GameManager gameManager;               //Script GameManager
  public BallController ballcontroller;
+ public GameObject planeGameStart;
     public GameObject sign_GameStart;            //Schriftzug des StartButtons
     public GameObject sign_Direction;            //Schriftzug des RichtungauswählenButtons
     public GameObject hintergrundPlaneWin;
@@ -66,14 +67,15 @@ public class GazeManager : MonoBehaviour
                     //Der Renderer des PushElements wird initalisiert und auf false gesetzt
                     //Den Button konnten wir nicht dierekt auf SetActiv(false) setzen,
                     //da es immer Fehlermeldunghen gab
-                    rend = pushElement.GetComponent<Renderer>();
-                    rend.enabled = false;
+                   rend = pushElement.GetComponent<Renderer>();
+                   rend.enabled = false;
 
                     //Wenn der Startbutton ausgewählt wurde verschwindet auch der Schriftzug
                     // und die Augen werden angeschaltet
                     //Die Methode StartGameManager wird aktiviert
                     if (pushElement.name == "PlaneStartGame" && buttonTag)
                     {
+                        planeGameStart.SetActive(false);
                         sign_GameStart.SetActive(false);
                         gameManager.StartGame();
 

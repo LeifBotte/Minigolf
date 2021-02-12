@@ -5,14 +5,17 @@ using UnityTemplateProjects;
 
 public class GameManager : MonoBehaviour
 {
-    public float arrowConfirmTime = 10;             // die Zeit bis der Pfeil verschwindet und die Richtung festgelegt wird 
+    public float arrowConfirmTime = 2;             // die Zeit bis der Pfeil verschwindet und die Richtung festgelegt wird 
     bool boolV = true;
     public GolfHoleScript golfHoleScript;
     bool startDirection = false;
-    public float teleportTime = 25;                 // Zeit zum anschauen der Map, also die Zeit die man in der Teleportphase ist
+    public float teleportTime = 10;                 // Zeit zum anschauen der Map, also die Zeit die man in der Teleportphase ist
     public bool overTeleTime = false;
     public GameObject hudTeleport;
     public GameObject hudGolf;
+    public GameObject xrRig;
+    public GameObject camoff;
+    public GameObject golfball;
     
     public void DirectionPhase()
     {
@@ -24,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         if(arrowConfirmTime >= 0 && startDirection && !GolfHoleScript.holeWon)     // wenn die Arrowconfirmtime größer als Null ist und startdirection ist True
         {
+            Debug.Log("HI");
             hudGolf.SetActive(true);                    // das GolfHUD wird aktiviert
             boolV = true;                               // Boolien wird auf true gesetzt
             aimTime();                                  //Aimtime wird ausgeführt
@@ -31,6 +35,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+
             hudGolf.SetActive(false);                   // das GolfHUD wird deaktiviert
             return false;                               // False wird zurück geliefert
         }

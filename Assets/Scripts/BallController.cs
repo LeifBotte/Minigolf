@@ -22,6 +22,8 @@ public class BallController : MonoBehaviour {
     public GolfHoleScript golfHoleScript;
     private Vector3 pos;
     private bool onObstacle;
+    bool dontTele;
+
 
 
     // Start is called before the first frame update
@@ -43,20 +45,32 @@ public class BallController : MonoBehaviour {
         if (hit) //Wenn der Ball getroffen wurde
         {
             //if(rb.IsSleeping() && !golfHoleScript.holeWon)             // Wenn der Ball sich nicht mehr bewegt und nicht im Ziel ist
-            if (rb.velocity.magnitude < 0.1 && !GolfHoleScript.holeWon) // Wenn der Ball sich nicht mehr bewegt und nicht im Ziel ist
+            if (rb.velocity.magnitude < 0.02 && !GolfHoleScript.holeWon) // Wenn der Ball sich nicht mehr bewegt und nicht im Ziel ist
             {
+                  if(!dontTele){
                 //Stop ball movement
+                Invoke("getBallPos",2);
+                dontTele =true;
+                Invoke("setDontTele",1);
+                  }
+            }
+        }
+    }
+    private void setDontTele(){
+        dontTele = false;
+    }
+    public void getBallPos(){
+      
                 rb.velocity = new Vector3 (0, 0, 0);
                 Debug.Log ("Bewegt sich nicht mehr");
                 xrrig.transform.position = transform.position; // XR Rig wird auf die Position des Balls gesetzt
-                xrrig.transform.Rotate (0, -90, 0); // XR Rig wird um 90 Grad zurück gedreht
+               // xrrig.transform.Rotate (0, -90, 0); // XR Rig wird um 90 Grad zurück gedreht
                 hit = false; // hit wird auf fals gesetzt
-                golfclub.SetActive (true); // Golfschläger wird Sichtbar gemacht
+               
+              //  golfclub.SetActive (true); // Golfschläger wird Sichtbar gemacht
                 arrow.transform.position = transform.position; // Richtungspfeil wird aktiviert
                 gameManager.arrowConfirmTime = 8; // ArrowConfirmTime wird auf 8 gesetzt
-
-            }
-        }
+        
     }
     public void gucci(){
           transform.position = nextPos (); // wird der Ball zur Startposition gesetzt
@@ -90,7 +104,7 @@ public class BallController : MonoBehaviour {
         }
         if (col.gameObject.tag == "OutOff") // Wenn der Ball den Ground trifft
         {
-            Debug.Log("FEHLER");
+            
             transform.position = lastPosition; // wird er auf die Letzte Position zurück gebracht
             StopBall (); // Und die Funktionb Stopball() wird ausgeführt
         }
