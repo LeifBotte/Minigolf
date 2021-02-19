@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject xrRig;
     public GameObject camoff;
     public GameObject golfball;
+    public GameObject camOffset;
     
     public void DirectionPhase()
     {
@@ -23,11 +24,14 @@ public class GameManager : MonoBehaviour
     }
 
 
+
     public bool aimPhase()                        // gibt zurück ob man in der Aimphase ist (Richtungsauswahl)
     {
         if(arrowConfirmTime >= 0 && startDirection && !GolfHoleScript.holeWon)     // wenn die Arrowconfirmtime größer als Null ist und startdirection ist True
         {
-            Debug.Log("HI");
+
+
+           // Debug.Log("HI");
             hudGolf.SetActive(true);                    // das GolfHUD wird aktiviert
             boolV = true;                               // Boolien wird auf true gesetzt
             aimTime();                                  //Aimtime wird ausgeführt

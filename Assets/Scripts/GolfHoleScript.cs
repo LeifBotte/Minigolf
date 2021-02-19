@@ -17,7 +17,7 @@ public class GolfHoleScript : MonoBehaviour {
         planeWin.SetActive (false);
     }
 
-    //Hier Funktioniert der Timer und das erscheinen der WinPlane noch nicht, haben es trotzdem für euch drinnen gelassen
+
     void Update () {
         if (!holeWon) //Wenn der Ball noch nicht im Ziel ist
         {
@@ -40,6 +40,7 @@ public class GolfHoleScript : MonoBehaviour {
 
     void OnTriggerEnter (Collider other) {
         if (other.name == "Golfball") { //wenn der Ball in das Loch fällt
+            planeWin.transform.position = new Vector3(transform.position.x,transform.position.y+1,transform.position.z);
             planeWin.SetActive (true); //setzt die Win Plane true
             AudioSource.PlayClipAtPoint (sound, transform.position, 0.7f); //Spiel Sound ab
             holeTrigger = true; //setzte holeTrigger auf true

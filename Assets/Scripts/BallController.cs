@@ -23,6 +23,7 @@ public class BallController : MonoBehaviour {
     private Vector3 pos;
     private bool onObstacle;
     bool dontTele;
+    public GameObject camoffset;
 
 
 
@@ -48,7 +49,6 @@ public class BallController : MonoBehaviour {
             if (rb.velocity.magnitude < 0.02 && !GolfHoleScript.holeWon) // Wenn der Ball sich nicht mehr bewegt und nicht im Ziel ist
             {
                   if(!dontTele){
-                //Stop ball movement
                 Invoke("getBallPos",2);
                 dontTele =true;
                 Invoke("setDontTele",1);
@@ -63,8 +63,10 @@ public class BallController : MonoBehaviour {
       
                 rb.velocity = new Vector3 (0, 0, 0);
                 Debug.Log ("Bewegt sich nicht mehr");
-                xrrig.transform.position = transform.position; // XR Rig wird auf die Position des Balls gesetzt
-               // xrrig.transform.Rotate (0, -90, 0); // XR Rig wird um 90 Grad zurück gedreht
+              
+               // xrrig.transform.position = transform.position; // XR Rig wird auf die Position des Balls gesetzt
+              //  xrrig.transform.Rotate (0, -90, 0); // XR Rig wird um 90 Grad zurück gedreht
+              
                 hit = false; // hit wird auf fals gesetzt
                
               //  golfclub.SetActive (true); // Golfschläger wird Sichtbar gemacht
@@ -77,6 +79,7 @@ public class BallController : MonoBehaviour {
             startPostion = nextPos ();
             GolfHoleScript.holeWon = false; // holeWon wird wieder auf false gesetzt
             arrow.transform.position = transform.position;
+            camoffset.transform.position =new Vector3( transform.position.x,transform.position.y+1,transform.position.z    );
             Debug.Log ("Loch: " + GolfHoleScript.holeCounter);
     }
 

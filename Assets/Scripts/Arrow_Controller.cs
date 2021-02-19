@@ -14,6 +14,7 @@ public class Arrow_Controller : MonoBehaviour
     public GameObject xrrig;
  public GameObject camOffset;
     public Vector3 forceDirection;
+    public GameObject golfball;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,13 +40,14 @@ public class Arrow_Controller : MonoBehaviour
         }
         
     }
-    private void followCamera()
+    public void followCamera()
     {
         
         transform.rotation = rotaionCamera.transform.rotation;   // Der Pfeil erhält die Rotation der Kamera
         var rot = transform.rotation;                            // Variable rot erhält die aktuelle Rotation
-        transform.rotation = new Quaternion(0, rot.y, 0, rot.w); // Die Rotation wird auf der X und Z Achse gesperrt        
+        transform.rotation = new Quaternion(0, rot.y, 0, rot.w); // Die Rotation wird auf der X und Z Achse gesperrt    
         xrrig.transform.position = golfBall.transform.position;  // XR Rig wird auf die Position des Balls gesetzt
+       camOffset.transform.position =new Vector3( golfBall.transform.position.x,golfBall.transform.position.y+1,golfBall.transform.position.z    );
 
 
 
