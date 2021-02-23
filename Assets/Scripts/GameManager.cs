@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityTemplateProjects;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class GameManager : MonoBehaviour
     bool boolV = true;
     public GolfHoleScript golfHoleScript;
     bool startDirection = false;
-    public float teleportTime = 10;                 // Zeit zum anschauen der Map, also die Zeit die man in der Teleportphase ist
+    public float teleportTime = 5;                 // Zeit zum anschauen der Map, also die Zeit die man in der Teleportphase ist
     public bool overTeleTime = false;
     public GameObject hudTeleport;
     public GameObject hudGolf;
@@ -17,6 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject camoff;
     public GameObject golfball;
     public GameObject camOffset;
+    public GameObject cam;
+    public BallController ball;
     
     public void DirectionPhase()
     {
@@ -27,11 +31,8 @@ public class GameManager : MonoBehaviour
 
     public bool aimPhase()                        // gibt zurück ob man in der Aimphase ist (Richtungsauswahl)
     {
-        if(arrowConfirmTime >= 0 && startDirection && !GolfHoleScript.holeWon)     // wenn die Arrowconfirmtime größer als Null ist und startdirection ist True
+        if(arrowConfirmTime >= 0 && startDirection && !GolfHoleScript.holeWon && !ball.gewonnen)     // wenn die Arrowconfirmtime größer als Null ist und startdirection ist True
         {
-
-
-           // Debug.Log("HI");
             hudGolf.SetActive(true);                    // das GolfHUD wird aktiviert
             boolV = true;                               // Boolien wird auf true gesetzt
             aimTime();                                  //Aimtime wird ausgeführt
@@ -39,6 +40,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if(ball.gewonnen){
+                xrRig.transform.position = new Vector3(30, 4, -3.5f);
+                cam.transform.position = new Vector3(30, 4, -3.5f);
+            }
 
             hudGolf.SetActive(false);                   // das GolfHUD wird deaktiviert
             return false;                               // False wird zurück geliefert
@@ -83,6 +88,7 @@ public class GameManager : MonoBehaviour
     {
         if(teleportTime <= 0 && overTeleTime)            // wenn die Teleportzeit kleiner gleich Null ist und Overteletime true ist
         {
+            Debug.Log("YOYOYO");
             overTeleTime =false;                          // Wird overteletime auf False gestzt
             hudTeleport.SetActive(false);                 // Teleport HUD wird auf True gesetzt
             return true;                                  // True werd zurück gegeben
@@ -94,13 +100,13 @@ public class GameManager : MonoBehaviour
     }
 
     //Funktionen die noch nicht implementiert wurden
-    public void Win()
+ public void again(){
+    Scene scene = SceneManager.GetActiveScene();
+     SceneManager.LoadScene(scene.name);
+ }
+
+    public void beenden()
     {
-
-    }
-
-    public void Lose()
-    {
-
+        Application.Quit();
     }
 }

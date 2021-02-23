@@ -11,7 +11,9 @@ public class GolfHoleScript : MonoBehaviour {
     public float winTime = 10;
     public float timer = 10;
     public bool holeTrigger = false;
-    public static int holeCounter;
+    public static int holeCounter ;
+    public GameManager gameManager;
+    public GameObject cam;
 
     void Start(){
         planeWin.SetActive (false);
@@ -21,7 +23,7 @@ public class GolfHoleScript : MonoBehaviour {
     void Update () {
         if (!holeWon) //Wenn der Ball noch nicht im Ziel ist
         {
-           // planeWin.SetActive (false); //bleibt die Gewinnerplane deaktiviert
+            //planeWin.SetActive (false); //bleibt die Gewinnerplane deaktiviert
         }
 
         if (holeTrigger) // wenn der Ball ins Ziel trifft
@@ -29,10 +31,7 @@ public class GolfHoleScript : MonoBehaviour {
 
             holeWon = true;
             holeTrigger = false;
-            holeCounter ++;
-            if (holeCounter == 9) {
-                holeCounter = 0;
-            }
+            holeCounter =+9;
             Debug.Log("LochCount: "+holeCounter);
 
         }
@@ -40,7 +39,12 @@ public class GolfHoleScript : MonoBehaviour {
 
     void OnTriggerEnter (Collider other) {
         if (other.name == "Golfball") { //wenn der Ball in das Loch fällt
+        planeWin.GetComponent<Renderer>().enabled = true;
             planeWin.transform.position = new Vector3(transform.position.x,transform.position.y+1,transform.position.z);
+            planeWin.transform.rotation =  cam.transform.rotation;
+            Vector3 rot = planeWin.transform.rotation.eulerAngles;
+            rot =  new Vector3(rot.x,rot.y+180,0);
+            planeWin.transform.rotation = Quaternion.Euler(rot);
             planeWin.SetActive (true); //setzt die Win Plane true
             AudioSource.PlayClipAtPoint (sound, transform.position, 0.7f); //Spiel Sound ab
             holeTrigger = true; //setzte holeTrigger auf true

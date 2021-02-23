@@ -86,7 +86,7 @@ public class GazeManager : MonoBehaviour
                     }
                     if (pushElement.name == "PlaneWin")
                     {
-                        Debug.Log("WINWINWINW");
+                    //    Debug.Log("WINWINWINW");
                     ballcontroller.gucci();
                     hintergrundPlaneWin.SetActive(false);
                                         }
@@ -98,6 +98,15 @@ public class GazeManager : MonoBehaviour
                         sign_Direction.SetActive(false);
                         gameManager.DirectionPhase();
                     }
+                     if (pushElement.name == "BeendenPlane")
+                    {
+                        gameManager.beenden();
+                    }
+                    if (pushElement.name == "NochmalPlane")
+                    {
+                        gameManager.again();
+                    }
+
 
                     buttonTag = false;
                 }
@@ -164,7 +173,7 @@ public class GazeManager : MonoBehaviour
     public void PushButton(GameObject button)
     {
         pushElement = button;
-        Debug.Log("HIER"+pushElement.name);
+       // Debug.Log("HIER"+pushElement.name);
         isgaze = true;
         //Signalisier, das ein Button ausgewählt wurde
         buttonTag = true;
