@@ -31,7 +31,7 @@ public class GolfHoleScript : MonoBehaviour {
 
             holeWon = true;
             holeTrigger = false;
-            holeCounter =+9;
+            holeCounter ++;
             Debug.Log("LochCount: "+holeCounter);
 
         }
